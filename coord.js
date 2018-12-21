@@ -17,6 +17,9 @@ class Coord {
     static equals(a, b) {
         return a.y == b.y && a.x == b.x;
     }
+    static opposite(a) {
+        return new Coord(a.x, a.y);
+    }
     subtract(other) {
         this.y -= other.y;
         this.x -= other.x;

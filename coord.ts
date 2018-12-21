@@ -23,6 +23,10 @@ class Coord {
     return a.y == b.y && a.x == b.x;
   }
 
+  static opposite(a: Coord): Coord {
+    return new Coord(a.x, a.y);
+  }
+
   subtract(other: Coord) {
     this.y -= other.y;
     this.x -= other.x;
