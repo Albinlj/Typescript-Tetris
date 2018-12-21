@@ -1,0 +1,130 @@
+@font-face {
+  font-family: myFont;
+  src: url(/subway-ticker.regular.ttf);
+}
+
+p {
+  margin: 4px;
+}
+
+body {
+  background-color: black;
+  color: white;
+  font-family: myFont;
+  font-size: 30px;
+}
+
+.text {
+  font-weight: 600 !important;
+}
+
+.cell {
+  padding: 10px 10px;
+  border-width: 4px;
+}
+
+.cellrow {
+  display: flex;
+}
+
+.col {
+  padding: 20px;
+}
+
+.stuff {
+  justify-content: center;
+  margin-top: 50px;
+  display: flex;
+  border-color: red;
+  border-width: 5px;
+}
+
+#nextpiecetext {
+  font-size: 20px;
+}
+
+#info {
+  width: 200px !important;
+  padding: 50px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#gameboard {
+  border-width: 10x;
+  border-style: solid;
+}
+
+.color0 {
+  background-color: yellow;
+  border-color: yellow;
+}
+
+.color1 {
+  background-color: blue;
+  border-color: blue;
+}
+
+.color2 {
+  background-color: greenyellow;
+  border-color: greenyellow;
+}
+
+.color3 {
+  background-color: rgb(255, 0, 34);
+  border-color: rgb(255, 0, 34);
+}
+.color4 {
+  background-color: orange;
+  border-color: orange;
+}
+.color5 {
+  background-color: cyan;
+  border-color: cyan;
+}
+.color6 {
+  background-color: magenta;
+  border-color: magenta;
+}
+
+.color7 {
+  background-color: purple;
+  border-color: purple;
+}
+
+.strut {
+  position: relative;
+  text-align: center;
+  top: 150px;
+}
+
+.strut h1 {
+  position: absolute;
+}
+
+.strut h2 {
+  position: absolute;
+  top: 160px;
+  left: 60px;
+  font-size: 14px;
+}
+
+#controls {
+  font-size: 12px;
+}
+
+.front {
+  z-index: 100;
+}
+
+.back {
+  background-color: #010101;
+  border-color: #080808;
+  border-style: inset;
+}
+
+.hidden {
+  visibility: hidden;
+}

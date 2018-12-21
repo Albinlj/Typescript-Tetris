@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Tetris</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="tetris.css" />
+    <script src="moves.js"></script>
+    <script src="enums.js"></script>
+    <script src="coord.js"></script>
+    <script src="drawing.js"></script>
+    <script src="input.js"></script>
+    <script src="block.js"></script>
+    <script src="piece.js"></script>
+  </head>
+  <body>
+    <div class="stuff">
+      <div id="gameboard">
+        <div class="strut">
+          <h1 class="gamovertext text">GAME OVER</h1>
+          <h2 class="text">PRESS R TO RESTART</h2>
+        </div>
+      </div>
+      <div id="info">
+        <div class="stats">
+          <div id="score" class="text">score</div>
+          <div id="level" class="text">lvl</div>
+          <div id="lines" class="text">LINES:</div>
+        </div>
+        <div id="nextpiecetext" class="text">NEXT PIECE:</div>
+        <div id="nextpiece"></div>
+        <div id="controls" class="text">
+          <p>
+            Rotate Counterclockwise:<br />
+            Z / Right Ctrl
+          </p>
+          <p>
+            Rotate Clockwise:<br />
+            X / Up
+          </p>
+          <p>Hard Drop: <br />S</p>
+          <p>Soft Drop: <br />D / Down</p>
+        </div>
+      </div>
+    </div>
+    <script src="tetris.js"></script>
+  </body>
+</html>
