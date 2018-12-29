@@ -3,7 +3,8 @@ class Piece {
     constructor(_coord, _type, _color) {
         this.rotatestate = 0;
         this.coord = _coord;
-        this.color = _color;
+        // this.color = _color;
+        this.color = _type;
         this.type = _type;
         //Set local coords
         let localBlockCoords = [];
@@ -36,25 +37,25 @@ class Piece {
                 break;
         }
         //Remap the local coords
-        let globalBlockCoords = localBlockCoords.map(local => Coord.add(new Coord(local[0], local[1]), _coord));
+        let globalBlockCoords = localBlockCoords.map(local => Vector2D.add(new Vector2D(local[0], local[1]), _coord));
         this.blocks = [];
         globalBlockCoords.forEach(coord => {
             this.blocks.push(new Block(coord, this.color));
         });
     }
     GetBlocksLocalCoords() {
-        return this.blocks.map(block => Coord.subtract(block.coord, this.coord));
+        return this.blocks.map(block => Vector2D.subtract(block.coord, this.coord));
     }
     GetLocalRotationCoords(wise) {
         if (wise == Rotation.Clockwise) {
-            return this.GetBlocksLocalCoords().map(local => new Coord(local.x, this.size - local.y - 1));
+            return this.GetBlocksLocalCoords().map(local => new Vector2D(local.x, this.size - local.y - 1));
         }
         else {
-            return this.GetBlocksLocalCoords().map(local => new Coord(this.size - local.x - 1, local.y));
+            return this.GetBlocksLocalCoords().map(local => new Vector2D(this.size - local.x - 1, local.y));
         }
     }
     GetWorldRotationCoords(wise) {
-        return this.GetLocalRotationCoords(wise).map(local => Coord.add(local, this.coord));
+        return this.GetLocalRotationCoords(wise).map(local => Vector2D.add(local, this.coord));
     }
     Rotate(wise) {
         this.ChangeCoords(this.GetWorldRotationCoords(wise));

@@ -7,7 +7,4 @@ class Block {
     Move(moveCoord) {
         this.coord.add(moveCoord);
     }
-    ToString() {
-        return "Coordinate: [y: " + this.coord.y + ", x: " + this.coord.x + "]";
-    }
 }

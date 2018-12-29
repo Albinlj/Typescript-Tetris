@@ -1,14 +1,15 @@
 class Piece {
-  coord: Coord;
+  coord: Vector2D;
   color: number;
   type: number;
   size: number;
   blocks: Block[];
   rotatestate: number = 0;
 
-  constructor(_coord: Coord, _type: Shape, _color: number) {
+  constructor(_coord: Vector2D, _type: Shape, _color: number) {
     this.coord = _coord;
-    this.color = _color;
+    // this.color = _color;
+    this.color = _type;
     this.type = _type;
 
     //Set local coords
@@ -45,7 +46,7 @@ class Piece {
 
     //Remap the local coords
     let globalBlockCoords = localBlockCoords.map(local =>
-      Coord.add(new Coord(local[0], local[1]), _coord)
+      Vector2D.add(new Vector2D(local[0], local[1]), _coord)
     );
 
     this.blocks = [];
@@ -55,25 +56,25 @@ class Piece {
     });
   }
 
-  GetBlocksLocalCoords(): Coord[] {
-    return this.blocks.map(block => Coord.subtract(block.coord, this.coord));
+  GetBlocksLocalCoords(): Vector2D[] {
+    return this.blocks.map(block => Vector2D.subtract(block.coord, this.coord));
   }
 
-  GetLocalRotationCoords(wise: Rotation): Coord[] {
+  GetLocalRotationCoords(wise: Rotation): Vector2D[] {
     if (wise == Rotation.Clockwise) {
       return this.GetBlocksLocalCoords().map(
-        local => new Coord(local.x, this.size - local.y - 1)
+        local => new Vector2D(local.x, this.size - local.y - 1)
       );
     } else {
       return this.GetBlocksLocalCoords().map(
-        local => new Coord(this.size - local.x - 1, local.y)
+        local => new Vector2D(this.size - local.x - 1, local.y)
       );
     }
   }
 
-  GetWorldRotationCoords(wise: Rotation): Coord[] {
+  GetWorldRotationCoords(wise: Rotation): Vector2D[] {
     return this.GetLocalRotationCoords(wise).map(local =>
-      Coord.add(local, this.coord)
+      Vector2D.add(local, this.coord)
     );
   }
 
@@ -81,13 +82,13 @@ class Piece {
     this.ChangeCoords(this.GetWorldRotationCoords(wise));
   }
 
-  ChangeCoords(_newCoords: Coord[]) {
+  ChangeCoords(_newCoords: Vector2D[]) {
     this.blocks.forEach((block, i) => {
       block.coord = _newCoords[i];
     });
   }
 
-  Move(moveCoord: Coord) {
+  Move(moveCoord: Vector2D) {
     this.coord.add(moveCoord);
     this.blocks.forEach(block => {
       block.Move(moveCoord);

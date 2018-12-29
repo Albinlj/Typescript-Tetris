@@ -24,13 +24,13 @@ window.addEventListener("keydown", function(event) {
   if (!gameOver) {
     switch (event.keyCode) {
       case 37: //Left
-        AttemptMove(new Coord(0, -1));
+        AttemptMove(new Vector2D(0, -1));
         break;
       case 39: //Right
-        AttemptMove(new Coord(0, 1));
+        AttemptMove(new Vector2D(0, 1));
         break;
       case 40: // Down
-        AttemptMove(new Coord(1, 0));
+        AttemptMove(new Vector2D(1, 0));
         break;
       case 38: //Up
       case 88: //X
@@ -46,7 +46,7 @@ window.addEventListener("keydown", function(event) {
       case 67: //C
         break;
       case 68: //D
-        AttemptMove(new Coord(1, 0));
+        AttemptMove(new Vector2D(1, 0));
         break;
       case 83: //S
         HardDrop();
@@ -63,7 +63,6 @@ window.addEventListener("keydown", function(event) {
         break;
     }
   }
-  console.log(event.keyCode);
 });
 
 function RestartGame() {
@@ -97,7 +96,7 @@ async function GameOver() {
     RemoveLine(i);
 
     for (let j = 0; j < width; j++) {
-      let newBlock = new Block(new Coord(i, j), colorIndex);
+      let newBlock = new Block(new Vector2D(i, j), colorIndex);
       deadBlocks.push(newBlock);
     }
     DrawPage();
@@ -191,7 +190,7 @@ function ClearFullLines() {
     for (let j = 0; j < width; j++) {
       if (
         !deadBlocks.some(deadBlock =>
-          Coord.equals(deadBlock.coord, new Coord(i, j))
+          Vector2D.equals(deadBlock.coord, new Vector2D(i, j))
         )
       ) {
         isFullLine = false;
@@ -207,18 +206,18 @@ function ClearFullLines() {
     // DrawPage();
     deadBlocks
       .filter(block => block.coord.y < fullLines[i])
-      .forEach(deadBlock => deadBlock.Move(new Coord(1, 0)));
+      .forEach(deadBlock => deadBlock.Move(new Vector2D(1, 0)));
   }
 
   linesCleared += fullLines.length;
   Score(fullLines.length);
 }
 
-function CoordinateHasDead(_coord: Coord) {
-  return deadBlocks.some(deadBlock => Coord.equals(deadBlock.coord, _coord));
+function CoordinateHasDead(_coord: Vector2D) {
+  return deadBlocks.some(deadBlock => Vector2D.equals(deadBlock.coord, _coord));
 }
 
-function IsValidCoord(_coord: Coord): boolean {
+function IsValidCoord(_coord: Vector2D): boolean {
   return (
     !CoordinateHasDead(_coord) &&
     _coord.y > -1 &&
@@ -235,7 +234,7 @@ function GameTick() {
     //Check for landing on bottom
     if (
       activeBlock.coord.y == height - 1 ||
-      CoordinateHasDead(Coord.add(activeBlock.coord, new Coord(1, 0)))
+      CoordinateHasDead(Vector2D.add(activeBlock.coord, new Vector2D(1, 0)))
     ) {
       islanding = true;
     }
@@ -246,7 +245,7 @@ function GameTick() {
     ClearFullLines();
     ActivateNextPiece();
   } else {
-    activePiece!.Move(new Coord(1, 0));
+    activePiece!.Move(new Vector2D(1, 0));
   }
   DrawPage();
 }
@@ -268,7 +267,7 @@ function ActivateNextPiece() {
     const deadBlock = deadBlocks[i];
     for (let j = 0; j < activePiece!.blocks.length; j++) {
       const activeBlock = activePiece!.blocks[j];
-      if (Coord.equals(deadBlock.coord, activeBlock.coord)) {
+      if (Vector2D.equals(deadBlock.coord, activeBlock.coord)) {
         GameOver();
         break;
       }
@@ -284,6 +283,6 @@ function ActivateNextPiece() {
 function SpawnRandomNextPiece() {
   let type = Math.floor(Math.random() * 7);
   let colorIndex = Math.floor(Math.random() * 8);
-  nextPiece = new Piece(new Coord(3, 4), type, colorIndex);
+  nextPiece = new Piece(new Vector2D(3, 4), type, colorIndex);
   DrawNextPiece();
 }

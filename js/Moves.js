@@ -1,14 +1,14 @@
 "use strict";
 function AttemptMove(_coord) {
-    if (activePiece.blocks.every(aliveBlock => IsValidCoord(Coord.add(aliveBlock.coord, _coord)))) {
+    if (activePiece.blocks.every(aliveBlock => IsValidCoord(Vector2D.add(aliveBlock.coord, _coord)))) {
         activePiece.Move(_coord);
         DrawPage();
     }
 }
 function HardDrop() {
     while (activePiece.blocks.every(aliveBlock => aliveBlock.coord.y < height - 1 &&
-        !CoordinateHasDead(new Coord(aliveBlock.coord.y + 1, aliveBlock.coord.x)))) {
-        activePiece.Move(new Coord(1, 0));
+        !CoordinateHasDead(new Vector2D(aliveBlock.coord.y + 1, aliveBlock.coord.x)))) {
+        activePiece.Move(new Vector2D(1, 0));
     }
     KillActivePiece();
     ClearFullLines();
@@ -39,11 +39,11 @@ function AttemptRotate(wise) {
             firstindex = (firstindex + 3) % 4;
         }
         let addCoord = wallKickMoves[firstindex][i];
-        let fullCoord = new Coord(addCoord[0], addCoord[1]);
+        let fullCoord = new Vector2D(addCoord[0], addCoord[1]);
         if (wise == Rotation.Counterclockwise) {
-            fullCoord = Coord.opposite(fullCoord);
+            fullCoord = Vector2D.opposite(fullCoord);
         }
-        if (worldCoords.every(coord => IsValidCoord(Coord.add(coord, fullCoord)))) {
+        if (worldCoords.every(coord => IsValidCoord(Vector2D.add(coord, fullCoord)))) {
             activePiece.ChangeCoords(worldCoords);
             activePiece.Move(fullCoord);
             let increment = wise == Rotation.Clockwise ? 1 : -1;

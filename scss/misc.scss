@@ -18,11 +18,6 @@ body {
   font-weight: 600 !important;
 }
 
-.cell {
-  padding: 10px 10px;
-  border-width: 4px;
-}
-
 .cellrow {
   display: flex;
 }
@@ -55,43 +50,6 @@ body {
 #gameboard {
   border-width: 10x;
   border-style: solid;
-}
-
-.color0 {
-  background-color: yellow;
-  border-color: yellow;
-}
-
-.color1 {
-  background-color: blue;
-  border-color: blue;
-}
-
-.color2 {
-  background-color: greenyellow;
-  border-color: greenyellow;
-}
-
-.color3 {
-  background-color: rgb(255, 0, 34);
-  border-color: rgb(255, 0, 34);
-}
-.color4 {
-  background-color: orange;
-  border-color: orange;
-}
-.color5 {
-  background-color: cyan;
-  border-color: cyan;
-}
-.color6 {
-  background-color: magenta;
-  border-color: magenta;
-}
-
-.color7 {
-  background-color: purple;
-  border-color: purple;
 }
 
 .strut {

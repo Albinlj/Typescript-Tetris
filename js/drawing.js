@@ -40,7 +40,6 @@ function DrawPage() {
     }
     allBlocks.forEach(block => {
         let cell = cells[block.coord.y * width + block.coord.x];
-        console.log(block.coord.ToString());
         cell.classList.remove("back");
         cell.classList.add("color" + block.color);
         cell.classList.add("front");

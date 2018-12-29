@@ -1,7 +1,7 @@
-function AttemptMove(_coord: Coord) {
+function AttemptMove(_coord: Vector2D) {
   if (
     activePiece!.blocks.every(aliveBlock =>
-      IsValidCoord(Coord.add(aliveBlock.coord, _coord))
+      IsValidCoord(Vector2D.add(aliveBlock.coord, _coord))
     )
   ) {
     activePiece!.Move(_coord);
@@ -14,11 +14,11 @@ function HardDrop() {
       aliveBlock =>
         aliveBlock.coord.y < height - 1 &&
         !CoordinateHasDead(
-          new Coord(aliveBlock.coord.y + 1, aliveBlock.coord.x)
+          new Vector2D(aliveBlock.coord.y + 1, aliveBlock.coord.x)
         )
     )
   ) {
-    activePiece!.Move(new Coord(1, 0));
+    activePiece!.Move(new Vector2D(1, 0));
   }
   KillActivePiece();
   ClearFullLines();
@@ -54,12 +54,12 @@ function AttemptRotate(wise: Rotation) {
     }
     let addCoord: number[] = wallKickMoves[firstindex][i];
 
-    let fullCoord = new Coord(addCoord[0], addCoord[1]);
+    let fullCoord = new Vector2D(addCoord[0], addCoord[1]);
     if (wise == Rotation.Counterclockwise) {
-      fullCoord = Coord.opposite(fullCoord);
+      fullCoord = Vector2D.opposite(fullCoord);
     }
 
-    if (worldCoords.every(coord => IsValidCoord(Coord.add(coord, fullCoord)))) {
+    if (worldCoords.every(coord => IsValidCoord(Vector2D.add(coord, fullCoord)))) {
       activePiece!.ChangeCoords(worldCoords);
       activePiece!.Move(fullCoord);
 
