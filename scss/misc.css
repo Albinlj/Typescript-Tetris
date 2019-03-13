@@ -19,6 +19,8 @@ body {
 }
 
 .cellrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -27,8 +29,12 @@ body {
 }
 
 .stuff {
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   border-color: red;
   border-width: 5px;
@@ -41,10 +47,16 @@ body {
 #info {
   width: 200px !important;
   padding: 50px;
-
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 #gameboard {
@@ -86,3 +98,4 @@ body {
 .hidden {
   visibility: hidden;
 }
+/*# sourceMappingURL=misc.css.map */
