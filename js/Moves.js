@@ -28,7 +28,7 @@ function HardDrop() {
   DrawPage();
 }
 function AttemptRotate(wise) {
-  //This algorithm implements "Wall Kicks"
+  //This algorithm implements "Wall Kicks"-
   //http://tetris.wikia.com/wiki/SRS
   let worldCoords = activePiece.GetWorldRotationCoords(wise);
   let wallKickMoves =

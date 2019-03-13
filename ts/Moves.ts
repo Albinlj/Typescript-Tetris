@@ -58,8 +58,10 @@ function AttemptRotate(wise: Rotation) {
     if (wise == Rotation.Counterclockwise) {
       fullCoord = Vector2D.opposite(fullCoord);
     }
-
-    if (worldCoords.every(coord => IsValidCoord(Vector2D.add(coord, fullCoord)))) {
+    //a
+    if (
+      worldCoords.every(coord => IsValidCoord(Vector2D.add(coord, fullCoord)))
+    ) {
       activePiece!.ChangeCoords(worldCoords);
       activePiece!.Move(fullCoord);
 
