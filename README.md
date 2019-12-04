@@ -2,6 +2,8 @@
 
 A tetris clone built to try out typescript.
 
+https://albinlj.github.io/typescript-tetris
+
 According to the rules at:
 https://tetris.fandom.com/wiki/Category:Rotation_Systems
 Now featuring wall kick! :)
